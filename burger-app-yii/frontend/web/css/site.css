@@ -101,6 +101,23 @@ a.desc:after {
     border: none;
 }
 
+.navbar-inverse{
+    background-color: #703b09;
+    border: none;
+}
+
+.navbar-inverse .navbar-nav > .active > a,.navbar-inverse .navbar-nav > li > a:hover{
+    background-color: #8f5c2c !important;
+}
+
+.navbar-inverse .navbar-toggle{
+    border-color: #fff;
+}
+
+.navbar-inverse .navbar-collapse{
+    border-color: #fff;
+}
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
