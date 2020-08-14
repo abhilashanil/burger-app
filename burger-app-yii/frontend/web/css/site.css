@@ -6,8 +6,8 @@ body {
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+    margin: 0 auto;
+    padding: 0 0 0;
 }
 
 .wrap > .container {
@@ -99,6 +99,35 @@ a.desc:after {
 .nav li > form > button.logout {
     padding: 15px;
     border: none;
+}
+
+.navbar-inverse{
+    background-color: #703b09;
+    border: none;
+}
+
+.navbar-inverse .navbar-nav > .active > a,.navbar-inverse .navbar-nav > li > a:hover{
+    background-color: #8f5c2c !important;
+}
+
+.navbar-inverse .navbar-toggle{
+    border-color: #fff;
+}
+
+.navbar-inverse .navbar-collapse{
+    border-color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+main{
+    margin-top: 72px;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    color: #fff;
 }
 
 @media(max-width:767px) {

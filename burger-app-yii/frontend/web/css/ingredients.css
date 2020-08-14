@@ -1,0 +1,92 @@
+.BuildControl {
+    width: 100%;
+    background-color: #cf8f2e;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: 0 2px 1px #ccc;
+    margin: auto;
+    padding: 10px 0;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.Build {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.Build_Label {
+    padding: 10px;
+    font-weight: 700;
+    width: 80px;
+}
+
+.Build button:disabled {
+    background-color: #ac9980;
+    border: 1px solid #7e7365;
+    color: #ccc;
+    cursor: default;
+}
+
+.Build button {
+    display: block;
+    font: inherit;
+    padding: 5px;
+    margin: 0 5px;
+    width: 80px;
+    border: 1px solid #aa6817;
+    cursor: pointer;
+    outline: none;
+}
+
+.Build .Build_More {
+    background-color: #8f5e1e;
+    color: #fff;
+}
+
+button {
+    appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+.BuildControl_OrderButton:disabled {
+    background-color: #c7c6c6;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+    color: #888;
+}
+
+.BuildControl_OrderButton {
+    background-color: #dad735;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #966909;
+    color: #966909;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    box-shadow: 2px 2px 2px #966909;
+}
