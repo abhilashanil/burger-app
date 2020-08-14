@@ -6,8 +6,8 @@ body {
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+    margin: 0 auto;
+    padding: 0 0 0;
 }
 
 .wrap > .container {
@@ -116,6 +116,18 @@ a.desc:after {
 
 .navbar-inverse .navbar-collapse{
     border-color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+main{
+    margin-top: 72px;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    color: #fff;
 }
 
 @media(max-width:767px) {
