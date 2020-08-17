@@ -130,6 +130,15 @@ main{
     color: #fff;
 }
 
+.site-login,.site-signup{
+    padding: 0px 0px 0px 50px;
+}
+
+.site-logo{
+    height: 100%;
+    width: 35px;
+}
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;

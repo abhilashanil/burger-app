@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'name' => '<div class="header-logo"><img src="../../images/burger.png" alt="name" style="height: 100%;margin-bottom: 6px"></div>',
+    'name' => '<img src="../../images/burger.png" class="site-logo">',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
