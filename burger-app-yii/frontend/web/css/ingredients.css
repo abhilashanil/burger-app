@@ -57,7 +57,12 @@ strong {
     color: #fff;
 }
 
-button {
+.Build .Build_Less {    
+    background-color: #D39952;
+    color: white;
+}
+
+/* button {
     appearance: button;
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
@@ -70,7 +75,7 @@ button {
     align-items: flex-start;
     box-sizing: border-box;
     border-radius: 2px;
-}
+} */
 
 .BuildControl_OrderButton:disabled {
     background-color: #c7c6c6;
