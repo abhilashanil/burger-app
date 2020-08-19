@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/preview.css',
         'css/ingredients.css',
+        'css/orders.css',
 
     ];
     public $js = [
