@@ -48,11 +48,6 @@ class m200819_084734_modify_table extends Migration
         $this->addColumn('orders', 'email', $this->string(255));
         $this->addColumn('orders', 'delivery_mode', $this->string(255));
 
-        // Add coloumns to order_ingredients table
-        $this->addColumn('order_ingredients', 'salad', $this->integer());
-        $this->addColumn('order_ingredients', 'cheese', $this->integer());
-        $this->addColumn('order_ingredients', 'bacon', $this->integer());
-        $this->addColumn('order_ingredients', 'meat', $this->integer());
     }
 
     /**
