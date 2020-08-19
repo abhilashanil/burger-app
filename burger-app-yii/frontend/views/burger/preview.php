@@ -9,11 +9,7 @@
         <div class="Burger_seed2">
         </div>
     </div>
-    <div class="Salad"></div>
-    <div class="Bacon"></div>
-    <div class="Cheese"></div>
-    <div class="Meat"></div>
-    <p>Please start adding ingredients!!!</p>
+    <p class="startMessage">Please start adding ingredients!!!</p>
     <div class="Burger_Breadbottom">
     </div>
 </div>

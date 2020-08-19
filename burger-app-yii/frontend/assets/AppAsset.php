@@ -16,9 +16,10 @@ class AppAsset extends AssetBundle
         'css/preview.css',
         'css/ingredients.css',
         'css/checkout.css',
-
+        'css/orders.css'
     ];
     public $js = [
+        'js/script.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

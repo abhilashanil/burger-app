@@ -19,4 +19,9 @@ class BurgerController extends Controller
     {
         return $this->render('checkout');
     }
+
+    public function actionOrders()
+    {
+        return $this->render('orders');
+    }
 }
