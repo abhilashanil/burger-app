@@ -47,7 +47,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="modal-btn cancel" data-dismiss="modal">CANCEL</button>
-          <button type="button" class="modal-btn continue">CONTINUE</button>
+          <button type="button" class="modal-btn continue" id="modal-continue">CONTINUE</button>
         </div>
       </div>
     </div>
