@@ -57,19 +57,9 @@ strong {
     color: #fff;
 }
 
-button {
-    appearance: button;
-    -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    text-align: center;
-    align-items: flex-start;
-    box-sizing: border-box;
-    border-radius: 2px;
+.Build .Build_Less {    
+    background-color: #D39952;
+    color: white;
 }
 
 .BuildControl_OrderButton:disabled {
