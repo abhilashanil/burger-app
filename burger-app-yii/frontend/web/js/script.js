@@ -20,7 +20,18 @@ $(".more_salad").click( function() {
     $('.less_salad').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['salad']++;
-}); 
+    $.ajax('/burger/ingredient', {
+        type: 'POST',  // http method
+        data: { ingredient: 'Salad' },  // data to submit
+        success: function (data, status, xhr) {
+            console.log('here this');
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+                console.log('Error' + errorMessage);
+        }
+    });
+});
+
 
 $(".less_salad").click( function() {
     if ($(".Salad").length <= 1) {
