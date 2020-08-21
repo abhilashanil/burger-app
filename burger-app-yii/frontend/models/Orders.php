@@ -11,6 +11,14 @@ use Yii;
  * @property int|null $user_id
  * @property string|null $date
  * @property float|null $total
+ * @property string|null $name
+ * @property string|null $street
+ * @property string|null $city
+ * @property int|null $zipcode
+ * @property string|null $country
+ * @property string|null $state
+ * @property string|null $email
+ * @property string|null $delivery_mode
  *
  * @property OrderIngredients[] $orderIngredients
  * @property User $user
@@ -31,9 +39,10 @@ class Orders extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'integer'],
+            [['user_id', 'zipcode'], 'integer'],
             [['date'], 'safe'],
             [['total'], 'number'],
+            [['name', 'street', 'city', 'country', 'state', 'email', 'delivery_mode'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -48,6 +57,14 @@ class Orders extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'date' => 'Date',
             'total' => 'Total',
+            'name' => 'Name',
+            'street' => 'Street',
+            'city' => 'City',
+            'zipcode' => 'Zipcode',
+            'country' => 'Country',
+            'state' => 'State',
+            'email' => 'Email',
+            'delivery_mode' => 'Delivery Mode',
         ];
     }
 

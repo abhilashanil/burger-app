@@ -1,3 +1,5 @@
+<div class="CheckoutSummary">
+   <h1>We hope it tastes well!</h1>
 <?php
    echo $this->render('preview');
 ?>

@@ -80,3 +80,30 @@ strong {
     padding: 15px 30px;
     box-shadow: 2px 2px 2px #966909;
 }
+.modal-content.margin30 {
+    margin-top: 30%;
+}
+.modal-dialog p, .modal-dialog ul, .modal-dialog h4 {
+    padding-top: 5px;
+}
+.modal-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px;
+    font-weight: 700;
+    float: left;
+}
+.modal-btn.cancel {
+    color: #944317
+}
+.modal-btn.continue {
+    color: #5c9210;
+}
+.BuildControl .price{
+    font-weight: bold;
+}
