@@ -62,21 +62,6 @@ strong {
     color: white;
 }
 
-/* button {
-    appearance: button;
-    -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    text-align: center;
-    align-items: flex-start;
-    box-sizing: border-box;
-    border-radius: 2px;
-} */
-
 .BuildControl_OrderButton:disabled {
     background-color: #c7c6c6;
     cursor: not-allowed;
@@ -118,4 +103,7 @@ strong {
 }
 .modal-btn.continue {
     color: #5c9210;
+}
+.BuildControl .price{
+    font-weight: bold;
 }

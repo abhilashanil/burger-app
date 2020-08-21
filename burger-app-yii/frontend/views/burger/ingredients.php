@@ -3,7 +3,7 @@
 
 ?>
 <div class="BuildControl">
-   <p>Current Price : <strong>4.00</strong></p>
+   <p>Current Price : <span class="price">4.00</span></p>
    <div class="Build">
       <div class="Build_Label">Salad</div>
       <button class="Build_Less less_salad" disabled="">Less</button>

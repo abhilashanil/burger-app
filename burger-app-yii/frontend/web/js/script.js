@@ -13,6 +13,25 @@ function checkForIngredients(ingredient){
     return saladObj || cheeseObj || baconObj || meatObj;    
 }
 
+function calculateTotalPrice(ingredient,type){
+    $.ajax('/burger/ingredient', {
+        type: 'POST',
+        data: { ingredient: ingredient },
+        success: function (data, status, xhr) {
+            let currentPrice = $(".BuildControl .price").text();
+            if(type == 'more'){
+                var newPrice = Number(currentPrice) + Number(data.price);
+            }else{
+                var newPrice = Number(currentPrice) - Number(data.price);
+            }
+            $(".BuildControl .price").text(newPrice.toFixed(2))
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log('Error' + errorMessage);
+        }
+    });
+}
+
 $(".more_salad").click( function() {
     $(".startMessage").hide();
     var saladNode = $('<div class="Salad"></div>');
@@ -20,16 +39,7 @@ $(".more_salad").click( function() {
     $('.less_salad').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['salad']++;
-    $.ajax('/burger/ingredient', {
-        type: 'POST',  // http method
-        data: { ingredient: 'Salad' },  // data to submit
-        success: function (data, status, xhr) {
-            console.log('here this');
-        },
-        error: function (jqXhr, textStatus, errorMessage) {
-                console.log('Error' + errorMessage);
-        }
-    });
+    calculateTotalPrice('Salad','more');
 });
 
 
@@ -37,6 +47,7 @@ $(".less_salad").click( function() {
     if ($(".Salad").length <= 1) {
         $('.less_salad').attr("disabled","true");
     }
+    calculateTotalPrice('Salad','less');
     if($(".Salad").length){
        $('.Burger').find('.Salad').first().remove();
     }
@@ -58,12 +69,14 @@ $(".more_cheese").click( function() {
     $('.less_cheese').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['cheese']++;
+    calculateTotalPrice('Cheese','more');
 }); 
 
 $(".less_cheese").click( function() {
     if ($(".Cheese").length <= 1) {
         $('.less_cheese').attr("disabled","true");
     }
+    calculateTotalPrice('Cheese','less');
     if($(".Cheese").length){
        $('.Burger').find('.Cheese').first().remove();
     }
@@ -85,12 +98,14 @@ $(".more_bacon").click( function() {
     $('.less_bacon').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['bacon']++;
+    calculateTotalPrice('Bacon','more');
 }); 
 
 $(".less_bacon").click( function() {
     if ($(".Bacon").length <= 1) {
         $('.less_bacon').attr("disabled","true");
     }
+    calculateTotalPrice('Bacon','less');
     if($(".Bacon").length){
        $('.Burger').find('.Bacon').first().remove();
     }
@@ -108,12 +123,14 @@ $(".more_meat").click( function() {
     $('.less_meat').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['meat']++;
+    calculateTotalPrice('Meat','more');
 }); 
 
 $(".less_meat").click( function() {
     if ($(".Meat").length <= 1) {
         $('.less_meat').attr("disabled","true");
     }
+    calculateTotalPrice('Meat','less');
     if($(".Meat").length){
        $('.Burger').find('.Meat').first().remove();
     }

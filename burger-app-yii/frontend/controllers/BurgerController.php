@@ -20,12 +20,12 @@ class BurgerController extends Controller
                 'only' => ['index', 'checkout','orders','ingredient'],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index','ingredient'],
                         'allow' => true,
                         'roles' => ['?','@'],
                     ],
                     [
-                        'actions' => ['orders','checkout','ingredient'],
+                        'actions' => ['orders','checkout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -74,6 +74,6 @@ class BurgerController extends Controller
         $ingredient = Ingredients::find()->andWhere([
             'name' => $request['ingredient']
         ])->one();
-        print_r($ingredient->price);die;
+        return $this->asJson($ingredient);
     }
 }
