@@ -146,15 +146,17 @@ $(document).on('show.bs.modal', '#myModal', function (e) {
     $('#li-cheese').text(ingredients['cheese']);
     $('#li-bacon').text(ingredients['bacon']);
     $('#li-meat').text(ingredients['meat']);
+    var totalPrice = $("#current-price").text();
+    $('#total-price').text(totalPrice);
 });
 
 $('#modal-continue').click( function(){
     $.ajax({
         method: "POST",
-        url: "burger/checkout",
+        url: "/burger/checkout",
         data: {'ingredients' : ingredients}
       })
         .done(function( msg ) {
-            window.location="./burger/checkout";
+            window.location="/burger/checkout";
         });
 });
