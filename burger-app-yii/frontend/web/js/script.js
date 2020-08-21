@@ -1,3 +1,10 @@
+ingredients = {
+    salad : 0,
+    cheese : 0,
+    bacon : 0,
+    meat : 0
+}
+
 function checkForIngredients(ingredient){
     let saladObj = $(".Salad").length;
     let cheeseObj = $(".Cheese").length;
@@ -12,6 +19,7 @@ $(".more_salad").click( function() {
     $('.Burger_Breadtop').after(saladNode);
     $('.less_salad').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
+    ingredients['salad']++;
     $.ajax('/burger/ingredient', {
         type: 'POST',  // http method
         data: { ingredient: 'Salad' },  // data to submit
@@ -24,6 +32,7 @@ $(".more_salad").click( function() {
     });
 });
 
+
 $(".less_salad").click( function() {
     if ($(".Salad").length <= 1) {
         $('.less_salad').attr("disabled","true");
@@ -35,6 +44,7 @@ $(".less_salad").click( function() {
         $(".startMessage").show();
         $('.BuildControl_OrderButton').attr("disabled","true");
     }
+    ingredients['salad']--;
 });
 
 $(".more_cheese").click( function() {
@@ -47,6 +57,7 @@ $(".more_cheese").click( function() {
     }
     $('.less_cheese').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
+    ingredients['cheese']++;
 }); 
 
 $(".less_cheese").click( function() {
@@ -60,6 +71,7 @@ $(".less_cheese").click( function() {
         $(".startMessage").show();
         $('.BuildControl_OrderButton').attr("disabled","true");
     }
+    ingredients['cheese']--;
 });
 
 $(".more_bacon").click( function() {
@@ -72,6 +84,7 @@ $(".more_bacon").click( function() {
     }
     $('.less_bacon').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
+    ingredients['bacon']++;
 }); 
 
 $(".less_bacon").click( function() {
@@ -85,6 +98,7 @@ $(".less_bacon").click( function() {
         $(".startMessage").show();
         $('.BuildControl_OrderButton').attr("disabled","true");
     }
+    ingredients['bacon']--;
 });
 
 $(".more_meat").click( function() {
@@ -93,6 +107,7 @@ $(".more_meat").click( function() {
     $('.Burger_Breadbottom').before(meatNode);
     $('.less_meat').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
+    ingredients['meat']++;
 }); 
 
 $(".less_meat").click( function() {
@@ -105,5 +120,24 @@ $(".less_meat").click( function() {
     if (!checkForIngredients()) {
         $(".startMessage").show();
         $('.BuildControl_OrderButton').attr("disabled","true");
+        ingredients['meat']--;
     }
+});
+
+$(document).on('show.bs.modal', '#myModal', function (e) {
+    $('#li-salad').text(ingredients['salad']);
+    $('#li-cheese').text(ingredients['cheese']);
+    $('#li-bacon').text(ingredients['bacon']);
+    $('#li-meat').text(ingredients['meat']);
+});
+
+$('#modal-continue').click( function(){
+    $.ajax({
+        method: "POST",
+        url: "burger/checkout",
+        data: {'ingredients' : ingredients}
+      })
+        .done(function( msg ) {
+            window.location="./burger/checkout";
+        });
 });

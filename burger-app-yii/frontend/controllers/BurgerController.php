@@ -52,6 +52,14 @@ class BurgerController extends Controller
 
     public function actionCheckout()
     {
+
+        $ingredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : null;
+        if($ingredients!= null){
+            $session = Yii::$app->session;
+            $session->open();
+            $session->set('ingredients', $ingredients);
+            return 'success';
+        }
         return $this->render('checkout');
     }
 
