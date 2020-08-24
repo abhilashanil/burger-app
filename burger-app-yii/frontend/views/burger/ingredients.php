@@ -3,7 +3,7 @@
 
 ?>
 <div class="BuildControl">
-   <p>Current Price : <span class="price">4.00</span></p>
+   <p>Current Price : <span class="price" id="current-price">4.00</span></p>
    <div class="Build">
       <div class="Build_Label">Salad</div>
       <button class="Build_Less less_salad" disabled="">Less</button>
@@ -24,7 +24,7 @@
       <button class="Build_Less less_meat" disabled="">Less</button>
       <button class="Build_More more_meat">More</button>
     </div>
-    <button class="BuildControl_OrderButton" disabled="" data-toggle="modal" data-target="#myModal"> SIGN UP FOR ORDER</button>
+    <button class="BuildControl_OrderButton" disabled="" data-toggle="modal" data-target="#myModal"> <?= Yii::$app->user->isGuest ? 'SIGN UP FOR ORDER': 'ORDER NOW' ?></button>
 
      <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
