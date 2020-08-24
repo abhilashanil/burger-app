@@ -62,21 +62,6 @@ strong {
     color: white;
 }
 
-/* button {
-    appearance: button;
-    -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    text-align: center;
-    align-items: flex-start;
-    box-sizing: border-box;
-    border-radius: 2px;
-} */
-
 .BuildControl_OrderButton:disabled {
     background-color: #c7c6c6;
     cursor: not-allowed;
@@ -94,4 +79,31 @@ strong {
     font-size: 1.2em;
     padding: 15px 30px;
     box-shadow: 2px 2px 2px #966909;
+}
+.modal-content.margin30 {
+    margin-top: 30%;
+}
+.modal-dialog p, .modal-dialog ul, .modal-dialog h4 {
+    padding-top: 5px;
+}
+.modal-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px;
+    font-weight: 700;
+    float: left;
+}
+.modal-btn.cancel {
+    color: #944317
+}
+.modal-btn.continue {
+    color: #5c9210;
+}
+.BuildControl .price{
+    font-weight: bold;
 }

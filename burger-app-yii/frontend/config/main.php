@@ -9,6 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'name' => '<img src="../../images/burger.png" class="site-logo">',
+    'homeUrl'=> array('burger/index'),
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

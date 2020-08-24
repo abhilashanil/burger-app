@@ -2,7 +2,7 @@
 
 ?>
 <div>
-    <div class="order1">
+    <div class="order">
         <p>
             Ingredients :
             <span class="order_ingredients">meat</span>

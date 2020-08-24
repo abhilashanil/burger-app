@@ -4,32 +4,12 @@
     margin: auto;
 }
 
-div {
-    display: block;
-}
-
-body {
-    margin: 0;
-    font-family: "Open Sans",-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-    -webkit-font-smoothing: antialiased;
-}
-
-h1 {
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
-
 .CheckoutSummary .CheckoutSummary_BurgerContainer {
     width: 100%;
     margin: auto;
 }
 
-.Button:first-of-type {
+.checkoutButton:first-of-type {
     margin-left: 0;
     padding-left: 0;
 }
@@ -38,7 +18,7 @@ h1 {
     color: #944317;
 }
 
-.Button {
+.checkoutButton {
     background-color: transparent;
     border: none;
     outline: none;
@@ -49,22 +29,96 @@ h1 {
     font-weight: 700;
 }
 
-button {
-    appearance: button;
+.Button_Success {
+    color: #5c9210;
+}
+
+.ContactData {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+h4 {
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.Input_Input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.Input_Label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 8px;
+}
+
+label {
+    cursor: default;
+}
+
+.Input_Element {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input {
     -webkit-writing-mode: horizontal-tb !important;
     text-rendering: auto;
+    color: -internal-light-dark(black, white);
     letter-spacing: normal;
     word-spacing: normal;
     text-transform: none;
     text-indent: 0px;
     text-shadow: none;
-    display: inline-block;
-    text-align: center;
-    align-items: flex-start;
-    box-sizing: border-box;
+    text-align: start;
+    appearance: textfield;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
     border-radius: 2px;
 }
 
-.Button_Success {
-    color: #5c9210;
+select:not(:-internal-list-box) {
+    overflow: visible !important;
+}
+
+select {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+    appearance: menulist;
+    align-items: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    cursor: default;
+    margin: 0em;
 }
