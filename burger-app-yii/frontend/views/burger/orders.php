@@ -1,5 +1,5 @@
 <?php
-
+    $this->title = 'Burger App - Orders';
 ?>
 <div>
     <div class="order">

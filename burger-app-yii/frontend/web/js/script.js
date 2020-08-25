@@ -141,7 +141,7 @@ $(".less_meat").click( function() {
     }
 });
 
-$(document).on('show.bs.modal', '#myModal', function (e) {
+$(document).on('show.bs.modal', '#orderConfirmationModal', function (e) {
     $('#li-salad').text(ingredients['salad']);
     $('#li-cheese').text(ingredients['cheese']);
     $('#li-bacon').text(ingredients['bacon']);
@@ -150,13 +150,29 @@ $(document).on('show.bs.modal', '#myModal', function (e) {
     $('#total-price').text(totalPrice);
 });
 
-$('#modal-continue').click( function(){
+$('#orderConfirmationModal #modal-continue').click( function(){
     $.ajax({
         method: "POST",
-        url: "/burger/checkout",
-        data: {'ingredients' : ingredients}
-      })
-        .done(function( msg ) {
+        url: "/burger/set-ingredients",
+        data: {'ingredients' : ingredients},
+        success: function (data, status, xhr) {
             window.location="/burger/checkout";
-        });
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log('Error' + errorMessage);
+        }
+      })
+});
+
+$(".checkoutCancel").click( function() {
+    $.ajax({
+        method: "POST",
+        url: "/burger/unset-ingredients",
+        success: function (data, status, xhr) {
+            window.location="/burger/index";
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log('Error' + errorMessage);
+        }
+      })
 });

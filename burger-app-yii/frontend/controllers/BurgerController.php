@@ -12,20 +12,25 @@ use frontend\models\Ingredients;
  */
 class BurgerController extends Controller
 {
+    /**
+     * behaviors
+     *
+     * @return void
+     */
     public function behaviors()
     {
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'checkout','orders','ingredient'],
+                'only' => ['index', 'checkout','orders','ingredient','set-ingredients','unset-ingredients'],
                 'rules' => [
                     [
-                        'actions' => ['index','ingredient'],
+                        'actions' => ['index','ingredient','set-ingredients'],
                         'allow' => true,
                         'roles' => ['?','@'],
                     ],
                     [
-                        'actions' => ['orders','checkout'],
+                        'actions' => ['orders','checkout','unset-ingredients'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -50,16 +55,38 @@ class BurgerController extends Controller
         return $this->render('index');
     }
 
-    public function actionCheckout()
-    {
-
+    /**
+     * actionSetIngredients
+     *
+     * @return void
+     */
+    public function actionSetIngredients(){
         $ingredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : null;
         if($ingredients!= null){
             $session = Yii::$app->session;
-            $session->open();
+            if (!$session->isActive){
+                $session->open();
+            }
             $session->set('ingredients', $ingredients);
-            return 'success';
+            return $this->asJson('success');
         }
+    }
+
+    /**
+     * actionUnsetIngredients
+     *
+     * @return void
+     */
+    public function actionUnsetIngredients(){
+        $session = Yii::$app->session;
+        if ($session->isActive && $session->has('ingredients')){
+            $session->remove('ingredients');
+        }
+        return $this->asJson('success');
+    }
+
+    public function actionCheckout()
+    {
         return $this->render('checkout');
     }
     
@@ -68,6 +95,11 @@ class BurgerController extends Controller
         return $this->render('orders');
     }
 
+    /**
+     * actionIngredient
+     *
+     * @return void
+     */
     public function actionIngredient()
     {
         $request = Yii::$app->request->post();
