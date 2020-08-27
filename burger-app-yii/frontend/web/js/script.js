@@ -151,10 +151,11 @@ $(document).on('show.bs.modal', '#orderConfirmationModal', function (e) {
 });
 
 $('#orderConfirmationModal #modal-continue').click( function(){
+    var orderTotal = $("#current-price").text();
     $.ajax({
         method: "POST",
         url: "/burger/set-ingredients",
-        data: {'ingredients' : ingredients},
+        data: {'ingredients' : ingredients, 'orderTotal' : orderTotal},
         success: function (data, status, xhr) {
             window.location="/burger/checkout";
         },

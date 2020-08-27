@@ -1,5 +1,8 @@
 <?php
-    $this->title = 'Burger App - Checkout';
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+$this->title = 'Burger App - Checkout';
+$session = Yii::$app->session;
 ?>
 
 <div class="CheckoutSummary">
@@ -17,7 +20,47 @@
    </div>
    <div class="ContactData">
       <h4>Enter your Contact Details</h4>
-      <form>
+
+      <?php
+      $form = ActiveForm::begin([
+         'id' => 'checkout-form'
+      ]) ?>
+      <div class="Input_Input">
+         <?= $form->field($model, 'name')->textInput(['maxlength' => true])->input('', ['placeholder' => "Your Name"])->label(false); ?>
+      </div>
+      <div class="Input_Input">
+         <?= $form->field($model, 'street')->textInput(['maxlength' => true])->input('', ['placeholder' => "Street"])->label(false); ?>
+      </div>
+      <div class="Input_Input">
+         <?= $form->field($model, 'city')->textInput(['maxlength' => true])->input('', ['placeholder' => "City"])->label(false); ?>
+      </div>
+      <div class="Input_Input">
+         <?= $form->field($model, 'zipcode')->textInput(['type' => 'number','maxlength' => true])->input('', ['placeholder' => "ZIP Code"])->label(false); ?>
+      </div>
+      <div class="Input_Input">
+         <?= $form->field($model, 'country')->textInput(['maxlength' => true])->input('', ['placeholder' => "Country"])->label(false); ?>
+      </div>
+      <div class="Input_Input">
+         <?= $form->field($model, 'state')->textInput(['maxlength' => true])->input('', ['placeholder' => "State"])->label(false); ?>
+      </div>
+      <div class="Input_Input">
+         <?= $form->field($model, 'email')->input('email', ['placeholder' => "Your E-mail"])->label(false); ?>
+      </div>
+      <div class="Input_Input">
+         <?php $options= ['fastest' => 'Fastest', 'cheapest' => 'Cheapest'];?>
+         <?= $form->field($model, 'delivery_mode')->dropDownList($options,['prompt'=>'Select Delivery Mode'])->label(false); ?>
+      </div>
+      <?php
+         if ($session->isActive && $session->has('orderTotal')){
+            $orderTotal = $session['orderTotal'];
+         }
+      ?>
+      <?= Html::activeHiddenInput($model, 'total', array('value'=>$orderTotal)) ;?>
+
+      <?= Html::submitButton('Order', ['class' => 'checkoutButton Button_Success']) ?>
+      <?php ActiveForm::end() ?>
+
+      <!-- <form>
          <div class="Input_Input">
             <label class="Input_Label"></label>
             <input class="Input_Element" type="text" placeholder="Your Name" value="">
@@ -54,6 +97,6 @@
          </select>
          </div>
          <button class="Button Button_Success">ORDER</button>
-         </form>
+         </form> -->
    </div>
 </div>

@@ -122,3 +122,7 @@ select {
     cursor: default;
     margin: 0em;
 }
+
+#checkout-form .help-block{
+    text-align: left;
+}

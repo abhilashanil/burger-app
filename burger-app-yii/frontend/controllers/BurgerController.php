@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\models\Ingredients;
+use frontend\models\Orders;
 
 /**
  * Burger controller
@@ -62,12 +63,14 @@ class BurgerController extends Controller
      */
     public function actionSetIngredients(){
         $ingredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : null;
-        if($ingredients!= null){
+        $orderTotal = isset($_POST['orderTotal']) ? $_POST['orderTotal'] : null;
+        if($ingredients!= null && $orderTotal!= null){
             $session = Yii::$app->session;
             if (!$session->isActive){
                 $session->open();
             }
             $session->set('ingredients', $ingredients);
+            $session->set('orderTotal', $orderTotal);
             return $this->asJson('success');
         }
     }
@@ -79,15 +82,22 @@ class BurgerController extends Controller
      */
     public function actionUnsetIngredients(){
         $session = Yii::$app->session;
-        if ($session->isActive && $session->has('ingredients')){
+        if ($session->isActive && $session->has('ingredients') && $session->has('orderTotal')){
             $session->remove('ingredients');
+            $session->remove('orderTotal');
         }
         return $this->asJson('success');
     }
 
     public function actionCheckout()
     {
-        return $this->render('checkout');
+        $model = new Orders();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['orders']);
+        }
+        return $this->render('checkout', [
+            'model' => $model,
+        ]);
     }
     
     public function actionOrders()
