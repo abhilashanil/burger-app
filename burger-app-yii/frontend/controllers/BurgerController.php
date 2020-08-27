@@ -5,6 +5,7 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\data\ActiveDataProvider;
 use frontend\models\Ingredients;
 use frontend\models\Orders;
 use frontend\models\OrderIngredients;
@@ -104,7 +105,15 @@ class BurgerController extends Controller
     
     public function actionOrders()
     {
-        return $this->render('orders');
+        $userId = \Yii::$app->user->id;
+        $userOrder = new ActiveDataProvider ([
+            'query' => Orders::find()->andWhere([
+            'user_id' => $userId
+            ])
+        ]);
+        return $this->render('orders', [
+            'userOrder' => $userOrder,
+        ]);
     }
 
     /**
