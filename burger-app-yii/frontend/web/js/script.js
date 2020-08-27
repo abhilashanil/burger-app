@@ -1,147 +1,147 @@
 ingredients = {
-    salad : 0,
-    cheese : 0,
-    bacon : 0,
-    meat : 0
+    salad: 0,
+    cheese: 0,
+    bacon: 0,
+    meat: 0
 }
 
-function checkForIngredients(ingredient){
+function checkForIngredients(ingredient) {
     let saladObj = $(".Salad").length;
     let cheeseObj = $(".Cheese").length;
     let baconObj = $(".Bacon").length;
     let meatObj = $(".Meat").length;
-    return saladObj || cheeseObj || baconObj || meatObj;    
+    return saladObj || cheeseObj || baconObj || meatObj;
 }
 
-function calculateTotalPrice(ingredient,type){
+function calculateTotalPrice(ingredient, type) {
     $.ajax('/burger/ingredient', {
         type: 'POST',
         data: { ingredient: ingredient },
-        success: function (data, status, xhr) {
+        success: function(data, status, xhr) {
             let currentPrice = $(".BuildControl .price").text();
-            if(type == 'more'){
+            if (type == 'more') {
                 var newPrice = Number(currentPrice) + Number(data.price);
-            }else{
+            } else {
                 var newPrice = Number(currentPrice) - Number(data.price);
             }
             $(".BuildControl .price").text(newPrice.toFixed(2))
         },
-        error: function (jqXhr, textStatus, errorMessage) {
+        error: function(jqXhr, textStatus, errorMessage) {
             console.log('Error' + errorMessage);
         }
     });
 }
 
-$(".more_salad").click( function() {
+$(".more_salad").click(function() {
     $(".startMessage").hide();
     var saladNode = $('<div class="Salad"></div>');
     $('.Burger_Breadtop').after(saladNode);
     $('.less_salad').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['salad']++;
-    calculateTotalPrice('Salad','more');
+    calculateTotalPrice('Salad', 'more');
 });
 
 
-$(".less_salad").click( function() {
+$(".less_salad").click(function() {
     if ($(".Salad").length <= 1) {
-        $('.less_salad').attr("disabled","true");
+        $('.less_salad').attr("disabled", "true");
     }
-    calculateTotalPrice('Salad','less');
-    if($(".Salad").length){
-       $('.Burger').find('.Salad').first().remove();
+    calculateTotalPrice('Salad', 'less');
+    if ($(".Salad").length) {
+        $('.Burger').find('.Salad').first().remove();
     }
     if (!checkForIngredients()) {
         $(".startMessage").show();
-        $('.BuildControl_OrderButton').attr("disabled","true");
+        $('.BuildControl_OrderButton').attr("disabled", "true");
     }
     ingredients['salad']--;
 });
 
-$(".more_cheese").click( function() {
+$(".more_cheese").click(function() {
     $(".startMessage").hide();
     var cheeseNode = $('<div class="Cheese"></div>');
-    if($(".Salad").length){
+    if ($(".Salad").length) {
         $('.Burger').find('.Salad').last().after(cheeseNode);
-    }else{
+    } else {
         $('.Burger_Breadtop').after(cheeseNode);
     }
     $('.less_cheese').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['cheese']++;
-    calculateTotalPrice('Cheese','more');
-}); 
+    calculateTotalPrice('Cheese', 'more');
+});
 
-$(".less_cheese").click( function() {
+$(".less_cheese").click(function() {
     if ($(".Cheese").length <= 1) {
-        $('.less_cheese').attr("disabled","true");
+        $('.less_cheese').attr("disabled", "true");
     }
-    calculateTotalPrice('Cheese','less');
-    if($(".Cheese").length){
-       $('.Burger').find('.Cheese').first().remove();
+    calculateTotalPrice('Cheese', 'less');
+    if ($(".Cheese").length) {
+        $('.Burger').find('.Cheese').first().remove();
     }
     if (!checkForIngredients()) {
         $(".startMessage").show();
-        $('.BuildControl_OrderButton').attr("disabled","true");
+        $('.BuildControl_OrderButton').attr("disabled", "true");
     }
     ingredients['cheese']--;
 });
 
-$(".more_bacon").click( function() {
+$(".more_bacon").click(function() {
     $(".startMessage").hide();
     var baconNode = $('<div class="Bacon"></div>');
-    if($(".Meat").length){
+    if ($(".Meat").length) {
         $('.Burger').find('.Meat').last().before(baconNode);
-    }else{
+    } else {
         $('.Burger_Breadbottom').before(baconNode);
     }
     $('.less_bacon').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['bacon']++;
-    calculateTotalPrice('Bacon','more');
-}); 
+    calculateTotalPrice('Bacon', 'more');
+});
 
-$(".less_bacon").click( function() {
+$(".less_bacon").click(function() {
     if ($(".Bacon").length <= 1) {
-        $('.less_bacon').attr("disabled","true");
+        $('.less_bacon').attr("disabled", "true");
     }
-    calculateTotalPrice('Bacon','less');
-    if($(".Bacon").length){
-       $('.Burger').find('.Bacon').first().remove();
+    calculateTotalPrice('Bacon', 'less');
+    if ($(".Bacon").length) {
+        $('.Burger').find('.Bacon').first().remove();
     }
     if (!checkForIngredients()) {
         $(".startMessage").show();
-        $('.BuildControl_OrderButton').attr("disabled","true");
+        $('.BuildControl_OrderButton').attr("disabled", "true");
     }
     ingredients['bacon']--;
 });
 
-$(".more_meat").click( function() {
+$(".more_meat").click(function() {
     $(".startMessage").hide();
     var meatNode = $('<div class="Meat"></div>');
     $('.Burger_Breadbottom').before(meatNode);
     $('.less_meat').removeAttr("disabled");
     $('.BuildControl_OrderButton').removeAttr("disabled");
     ingredients['meat']++;
-    calculateTotalPrice('Meat','more');
-}); 
+    calculateTotalPrice('Meat', 'more');
+});
 
-$(".less_meat").click( function() {
+$(".less_meat").click(function() {
     if ($(".Meat").length <= 1) {
-        $('.less_meat').attr("disabled","true");
+        $('.less_meat').attr("disabled", "true");
     }
-    calculateTotalPrice('Meat','less');
-    if($(".Meat").length){
-       $('.Burger').find('.Meat').first().remove();
+    calculateTotalPrice('Meat', 'less');
+    if ($(".Meat").length) {
+        $('.Burger').find('.Meat').first().remove();
     }
     if (!checkForIngredients()) {
         $(".startMessage").show();
-        $('.BuildControl_OrderButton').attr("disabled","true");
+        $('.BuildControl_OrderButton').attr("disabled", "true");
         ingredients['meat']--;
     }
 });
 
-$(document).on('show.bs.modal', '#myModal', function (e) {
+$(document).on('show.bs.modal', '#orderConfirmationModal', function(e) {
     $('#li-salad').text(ingredients['salad']);
     $('#li-cheese').text(ingredients['cheese']);
     $('#li-bacon').text(ingredients['bacon']);
@@ -150,13 +150,34 @@ $(document).on('show.bs.modal', '#myModal', function (e) {
     $('#total-price').text(totalPrice);
 });
 
-$('#modal-continue').click( function(){
+$('#orderConfirmationModal #modal-continue').click(function() {
+    var orderTotal = $("#current-price").text();
     $.ajax({
         method: "POST",
-        url: "/burger/checkout",
-        data: {'ingredients' : ingredients}
-      })
-        .done(function( msg ) {
-            window.location="/burger/checkout";
-        });
+        url: "/burger/set-ingredients",
+        data: { 'ingredients': ingredients, 'orderTotal': orderTotal },
+        success: function(data, status, xhr) {
+            window.location = "/burger/checkout";
+        },
+        error: function(jqXhr, textStatus, errorMessage) {
+            console.log('Error' + errorMessage);
+        }
+    })
+});
+
+$(".checkoutContinue").click(function() {
+    $('.ContactData').show();
+});
+
+$(".checkoutCancel").click(function() {
+    $.ajax({
+        method: "POST",
+        url: "/burger/unset-ingredients",
+        success: function(data, status, xhr) {
+            window.location = "/burger/index";
+        },
+        error: function(jqXhr, textStatus, errorMessage) {
+            console.log('Error' + errorMessage);
+        }
+    })
 });

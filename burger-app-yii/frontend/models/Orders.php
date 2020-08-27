@@ -1,9 +1,12 @@
 <?php
 
-namespace app\models;
 namespace frontend\models;
 
 use Yii;
+use common\models\User;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "orders".
@@ -34,17 +37,35 @@ class Orders extends \yii\db\ActiveRecord
         return 'orders';
     }
 
+    public function behaviors() {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'date',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
+            [
+                'class' => BlameableBehavior::class,
+                'createdByAttribute' => 'user_id',
+                'updatedByAttribute' =>false
+            ]
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['user_id', 'zipcode'], 'integer'],
+            [['user_id'], 'integer'],
             [['date'], 'safe'],
             [['total'], 'number'],
             [['name', 'street', 'city', 'country', 'state', 'email', 'delivery_mode'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['name', 'street', 'city', 'zipcode', 'country', 'state', 'email', 'delivery_mode'], 'required'],
+            [['zipcode'], 'integer','min' => 100000, 'max' => 999999],
         ];
     }
 

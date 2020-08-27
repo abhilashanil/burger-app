@@ -90,6 +90,10 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $session = Yii::$app->session;
+            if ($session->isActive && $session->has('ingredients')){
+                return $this->redirect(['burger/checkout']);
+            }
             return $this->goBack();
         } else {
             $model->password = '';
