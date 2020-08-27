@@ -165,6 +165,10 @@ $('#orderConfirmationModal #modal-continue').click(function() {
     })
 });
 
+$(".checkoutContinue").click(function() {
+    $('.ContactData').show();
+});
+
 $(".checkoutCancel").click(function() {
     $.ajax({
         method: "POST",
