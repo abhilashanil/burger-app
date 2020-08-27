@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\models\Ingredients;
 use frontend\models\Orders;
+use frontend\models\OrderIngredients;
 
 /**
  * Burger controller
@@ -93,6 +94,7 @@ class BurgerController extends Controller
     {
         $model = new Orders();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->saveIngredients($model->id);
             return $this->redirect(['orders']);
         }
         return $this->render('checkout', [
@@ -117,5 +119,20 @@ class BurgerController extends Controller
             'name' => $request['ingredient']
         ])->one();
         return $this->asJson($ingredient);
+    }
+
+    public function saveIngredients($id) {
+        $session = Yii::$app->session;
+        $ingredients = $session->get('ingredients');
+        $model = new OrderIngredients();
+        $model['order_id'] = $id;
+        foreach($ingredients as  $key=>$value) {
+            $model[$key] = $value;
+        }
+       if($model->save()) {
+        $session->remove('ingredients');
+        $session->remove('orderTotal');
+       }
+
     }
 }
