@@ -43,7 +43,7 @@ class Orders extends \yii\db\ActiveRecord
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'date',
                 'updatedAtAttribute' => false,
-                'value' => new Expression('NOW()'),
+                // 'value' => new Expression('NOW()'),
             ],
             [
                 'class' => BlameableBehavior::class,
@@ -108,5 +108,11 @@ class Orders extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getOrderIngredientsList(){
+        return OrderIngredients::find()->andWhere([
+            'order_id' => $this->id
+        ])->one();
     }
 }

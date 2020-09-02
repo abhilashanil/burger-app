@@ -90,7 +90,12 @@ class BurgerController extends Controller
         }
         return $this->asJson('success');
     }
-
+    
+    /**
+     * actionCheckout
+     *
+     * @return void
+     */
     public function actionCheckout()
     {
         $model = new Orders();
@@ -102,14 +107,17 @@ class BurgerController extends Controller
             'model' => $model,
         ]);
     }
-    
+        
+    /**
+     * actionOrders
+     *
+     * @return void
+     */
     public function actionOrders()
     {
         $userId = \Yii::$app->user->id;
         $userOrder = new ActiveDataProvider ([
-            'query' => Orders::find()->andWhere([
-            'user_id' => $userId
-            ])
+            'query' => Orders::find()->andWhere(['user_id' => $userId])->orderBy(['id' => SORT_DESC])
         ]);
         return $this->render('orders', [
             'userOrder' => $userOrder,
@@ -129,7 +137,13 @@ class BurgerController extends Controller
         ])->one();
         return $this->asJson($ingredient);
     }
-
+    
+    /**
+     * saveIngredients
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function saveIngredients($id) {
         $session = Yii::$app->session;
         $ingredients = $session->get('ingredients');
@@ -142,6 +156,5 @@ class BurgerController extends Controller
         $session->remove('ingredients');
         $session->remove('orderTotal');
        }
-
     }
 }

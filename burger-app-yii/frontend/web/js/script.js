@@ -167,6 +167,9 @@ $('#orderConfirmationModal #modal-continue').click(function() {
 
 $(".checkoutContinue").click(function() {
     $('.ContactData').show();
+    $('html, body').animate({
+        scrollTop: $(".ContactData").offset().top
+    }, 2000);
 });
 
 $(".checkoutCancel").click(function() {
