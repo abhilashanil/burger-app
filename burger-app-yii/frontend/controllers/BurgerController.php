@@ -5,7 +5,7 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use frontend\models\Ingredients;
+use frontend\models\OrderIngredients;
 use frontend\models\Orders;
 use yii\data\ActiveDataProvider;
 
@@ -54,7 +54,6 @@ class BurgerController extends Controller
 
     public function actionCheckout()
     {
-
         $ingredients = isset($_POST['ingredients']) ? $_POST['ingredients'] : null;
         if($ingredients!= null){
             $session = Yii::$app->session;

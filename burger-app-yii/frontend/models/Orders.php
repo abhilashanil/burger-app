@@ -88,4 +88,10 @@ class Orders extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    public function getOrderIngredientsList(){
+        return OrderIngredients::find()->andWhere([
+            'order_id' => $this->id
+        ])->one();
+    }
 }
