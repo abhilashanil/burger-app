@@ -3,31 +3,31 @@
 
 ?>
 <div class="BuildControl">
-   <p>Current Price : <span class="price" id="current-price">4.00</span></p>
-   <div class="Build">
-      <div class="Build_Label">Salad</div>
-      <button class="Build_Less less_salad" disabled="">Less</button>
-      <button class="Build_More more_salad">More</button>
-    </div>
-    <div class="Build">
-      <div class="Build_Label">Cheese</div>
-      <button class="Build_Less less_cheese" disabled="">Less</button>
-      <button class="Build_More more_cheese">More</button>
-    </div>
-    <div class="Build">
-      <div class="Build_Label">Bacon</div>
-      <button class="Build_Less less_bacon" disabled="">Less</button>
-      <button class="Build_More more_bacon">More</button>
-    </div>
-    <div class="Build">
-      <div class="Build_Label">Meat</div>
-      <button class="Build_Less less_meat" disabled="">Less</button>
-      <button class="Build_More more_meat">More</button>
-    </div>
-    <button class="BuildControl_OrderButton" disabled="" data-toggle="modal" data-target="#myModal"> <?= Yii::$app->user->isGuest ? 'SIGN UP FOR ORDER': 'ORDER NOW' ?></button>
+  <p>Current Price : <span class="price" id="current-price">4.00</span></p>
+  <div class="Build">
+    <div class="Build_Label">Salad</div>
+    <button class="Build_Less less_salad" disabled="">Less</button>
+    <button class="Build_More more_salad">More</button>
+  </div>
+  <div class="Build">
+    <div class="Build_Label">Cheese</div>
+    <button class="Build_Less less_cheese" disabled="">Less</button>
+    <button class="Build_More more_cheese">More</button>
+  </div>
+  <div class="Build">
+    <div class="Build_Label">Bacon</div>
+    <button class="Build_Less less_bacon" disabled="">Less</button>
+    <button class="Build_More more_bacon">More</button>
+  </div>
+  <div class="Build">
+    <div class="Build_Label">Meat</div>
+    <button class="Build_Less less_meat" disabled="">Less</button>
+    <button class="Build_More more_meat">More</button>
+  </div>
+  <button class="BuildControl_OrderButton" disabled="" data-toggle="modal" data-target="#orderConfirmationModal"> <?= Yii::$app->user->isGuest ? 'SIGN UP FOR ORDER': 'ORDER NOW' ?></button>
 
-     <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <!-- Order ConfirmationnModal -->
+  <div class="modal fade" id="orderConfirmationModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content margin30">
         <div class="modal-header">
@@ -42,7 +42,7 @@
             <li>Bacon :  <span id="li-bacon">0</span>  </li>
             <li>Meat :   <span id="li-meat">0</span>  </li>
           </ul>
-          <h4>Total Price :<span id="total-price">0</span> </h4>
+          <h4>Total Price : <span id="total-price">0</span> </h4>
           <p>Continue to Checkout?</p>
         </div>
         <div class="modal-footer">
@@ -52,5 +52,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>
